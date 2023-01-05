@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>
+      {% block title %}
+        Home Page
+      {% endblock %}
+    </title>
+      
+  </head>
+
+  <body>
+    {% block body %}
+
+    <!-- message to display that user is logged out -->
+      {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          {{ message }}
+        </div>
+      {% endfor %}
+
+      <main role="main" class="inner cover">
+        <!-- welcome note -->
+        <h1 class="cover-heading">𝑾𝒆𝒍𝒄𝒐𝒎𝒆 𝒕𝒐 𝑴𝒚𝑫𝒊𝒄𝒕𝒊𝒐𝒏𝒂𝒓𝒚</h1>
+        <h3 style="color:darkolivegreen;">Make your words meaningful!!</h3>
+        
+        <!-- if user is logged in display him features -->
+        {% if user.is_authenticated %} 
+
+          <p class="lead">
+            <a href="{% url 'search_word' %}" class="btn btn-lg btn-secondary">🕵Search your Word</a>
+          </p>
+
+          <p class="lead">
+            <a href="{% url 'list_words' %}" class="btn btn-lg btn-secondary">📜Show all Words</a>
+          </p>
+        
+        <!-- else show message to login / signup -->
+        {% else %}
+          <p style="color: red;">Please log in or sign up to enjoy our services</p>
+        {% endif %}
+        
+        <!-- if user is admin show him user messages -->
+        <p class="lead">
+          {% if user.is_admin %} 
+            <a href="{% url 'user_messages' %}" class="btn btn-lg btn-secondary">Messages</a>
+          {% endif %}
+        </p>
+
+      </main>
+
+    {% endblock %}
+  </body>
+</html>

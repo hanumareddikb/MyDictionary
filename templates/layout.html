@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+
+    <title>
+      {% block title %}
+        <!-- Write page title here-->
+      {% endblock %}
+    </title>
+
+  </head>
+
+  <body id="bg" class="text-center" style="background-image: url('{% static 'images/dict.jpg' %}');" >
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent fixed-top">
+      
+      <!-- anchor tag with website name on click redirects to home page-->
+      <a class="navbar-brand" href="{% url 'home' %}">𝐌𝐲📖𝐃𝐢𝐜𝐭𝐢𝐨𝐧𝐚𝐫𝐲</a>     
+
+      <!-- navbar items -->
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item active">
+          <!-- anchor tag with name Home on click redirects to home page-->
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+
+        <li class="nav-item active">
+          <!-- anchor tag with name About us on click redirects to About us page-->
+          <a class="nav-link" href="{% url 'about' %}">About us</a>
+        </li>
+
+        <li class="nav-item active">
+          <!-- anchor tag with name Contact us on click redirects to contact us page-->
+          <a class="nav-link" href="{% url 'contact' %}">Contact us</a>
+        </li>
+        
+        <!-- dropdown for user account section -->
+        <li class="nav-item dropdown active">
+          
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <!-- check user is logged in or not-->
+            <!-- if user is logged in display dropdown name as user name-->
+            {% if user.is_authenticated %} 
+              👤{{ user.username }}
+            
+            <!-- if user is not logged in display dropdown name as Log in/Sign up-->
+            {% else %}
+              👤Log in/Sign up
+            {% endif %}
+          </a>
+          
+          <!-- dropdown items -->
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+            <!-- check user is logged in or not-->
+            <!-- if user is logged in display dropdown item as logout-->
+            {% if user.is_authenticated %}
+              <a class="dropdown-item" href="{% url 'logout' %}" onclick="return confirm('Are you sure you want to logout?\nIf you logout, you will not have access to our services')">
+                Logout</a>
+
+            <!-- if user is not logged in display dropdown items login and signup-->
+            {% else %}
+              <a class="dropdown-item" href="{% url 'login' %}">Log in</a>
+              <a class="dropdown-item" href="{% url 'signup' %}">Sign up</a>
+            {% endif %}
+          </div>
+        </li>               
+      </ul>
+    </nav>
+    <br><br><br><br><br>
+      
+    {% block body %}
+
+      <!-- Write page Body here-->
+
+    {% endblock %}
+
+    <!-- Copyright -->
+    <h6 class="fixed-bottom" style="color: black">© MyDictionary 2022. All Right Reserved.</h6>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  </body>
+</html>

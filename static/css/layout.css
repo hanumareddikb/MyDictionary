@@ -1,0 +1,17 @@
+#bg{
+  -webkit-background-size: cover; 
+  -moz-background-size: cover; 
+  -o-background-size: cover; 
+  background-size: cover;
+}
+
+.navbar-brand
+{
+  font-size: 45px;
+}
+
+.nav-item
+{
+  font-weight: bold;
+  font-size: 20px;
+}

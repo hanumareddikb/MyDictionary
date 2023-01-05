@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}
+                Search Word
+            {% endblock %}
+        </title>
+        
+    </head>
+    
+    <body>
+        {% block body %}
+            <div class="container w-50 my-3">
+                <div class="container btn btn-secondary">
+                    <h1>Search your Word</h1>
+                </div><br><br><br>
+
+                <!-- message field to display  success or error in submission-->
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            
+                <div class="mb-3">
+                    <!-- search word form -->
+                    <form  method="post">
+                        {% csrf_token %}
+                        <input type="text" class="form-control" name="word" id="exampleFormControlInput1" placeholder="Search Word..."><br>
+                        <input type="submit" name="" class="btn btn-success" value="Search">
+                    </form>
+                </div>
+                <hr>
+                
+                <!-- display word -->
+                <h4 class="text" style="text-align: left;background-color: gray;color:darkblue;">
+                    ► {{ word }} :
+                </h4>
+
+                <!-- display word meaning -->
+                <h5 class="container btn btn-secondary"style="text-align: left; color: darkblue;">
+                    {{ meaning }}
+                </h5>
+            </div>
+
+        {% endblock %}
+    </body>
+</html>

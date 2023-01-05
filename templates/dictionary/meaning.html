@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}
+                Meaning
+            {% endblock %}
+        </title>
+        
+    </head>
+
+    <body>
+        {% block body %}
+
+            <!-- Display word and it's meaning for the word click in list_words.html page-->
+            {% for row in word_meaning %}
+                <div>
+                    <h2>{{ row.word }} :</h2>
+                    <hr>
+                    <h4>{{ row.meaning }}</h4>
+                </div>
+            {% endfor %}
+        
+        {% endblock %}      
+    </body>
+</html>

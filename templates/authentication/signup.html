@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      {% block title %}
+        Sign up  
+      {% endblock %}
+    </title>
+  </head>
+  
+  <body>
+    {% block body %}
+
+      <div class="row mt-6 justify-content-center" data-aos="fade-up">
+        <div class="col-lg-4">
+          
+          <!-- message to display  success or error in submission-->
+          {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              {{ message }}
+            </div>
+          {% endfor %}
+          
+          <!-- Sign up form -->
+          <form action="" method="post">
+            {% csrf_token %}
+            <h3>Sign up</h3>
+            
+            <!-- load sign up form -->
+            {{ sign_up_form.as_p }}
+
+            <div class="text-center">
+              <button class="btn btn-success" type="submit">Sign up</button>
+            </div>
+
+          </form>
+          <hr>
+          <!-- redirect button to log in page if user already have an account -->
+          <h6 style="color:black;">Have an account already?, <a href="{% url 'login' %}">Log in</a></h6>
+        </div>
+
+      </div>
+    {% endblock %}
+  </body>
+</html>

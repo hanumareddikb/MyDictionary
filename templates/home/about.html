@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/home.css">
+        <title>
+            {% block title %}
+                About Us
+            {% endblock %}
+        </title>
+        
+    </head>
+    
+    <body>
+        {% block body %}
+            <br><br><br>
+            <div style="width: 550px; margin-left: auto; margin-right: auto;">
+                <h3>About us : </h3>
+                
+                <p class="text-center"style="font-size: medium;">MyDictionary is the world’s digital dictionary. 
+                    We provide millions of English definitions and spellings,
+                    which helps people to know meanings for their words. 
+                    MyDictionary’s main, proprietary source 
+                    is the Dictionary.com
+                </p>
+            </div>
+
+        {% endblock %}
+        
+    </body>
+</html>

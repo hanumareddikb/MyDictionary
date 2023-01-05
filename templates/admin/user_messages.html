@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+      {% block title %}
+        Messages
+      {% endblock %}
+    </title>
+      
+  </head>
+  
+  <body>
+
+    {% block body %}
+      <!-- table to show user messages -->
+      <h3>Messages</h3>
+      <table class="table table-bordered table-sm ">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Message</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <!-- retrieve data from Message model using messages key -->
+          {% for data in messages %}
+            <tr>
+              <td>{{ data.name }}</td>
+              <td>{{ data.email }}</td>
+              <td>{{ data.subject }}</td>
+              <td>{{ data.message }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endblock %}
+  </body>
+</html>

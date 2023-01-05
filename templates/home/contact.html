@@ -1,0 +1,97 @@
+{% extends 'layout.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+      {% block title %}
+        Contact Us
+      {% endblock %}
+    </title>
+  </head>
+
+  <body>
+
+    {% block body %}
+      <!-- contact information -->
+      <section id="contact" class="contact">
+        <div class="container">
+      
+          <div class="row justify-content-center" data-aos="fade-up">  
+            <div class="col-lg-10">
+              <div class="info-wrap">
+                <div class="row">
+
+                  <div class="col-lg-4 info">
+                    <h4>📍Location:</h4>
+                    <p>108 Indira Nagar<br>Bengaluru, India 560038</p>
+                  </div>
+      
+                  <div class="col-lg-4 info mt-4 mt-lg-0">
+                    <h4>✉Email:</h4>
+                    <p>info@mydictionary.com<br>contact@mydictionary.com</p>
+                  </div>
+      
+                  <div class="col-lg-4 info mt-4 mt-lg-0">
+                    <h4>📞 Call:</h4>
+                    <p>+91- 9977880012<br>+91- 80 25215351</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <div class="row mt-5 justify-content-center" data-aos="fade-up">
+            <div class="col-lg-10">
+              <!-- display success message for sent message-->
+              {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  {{ message }}
+                </div>
+              {% endfor %}
+
+              <!-- message input field -->
+              <div style="text-align: left;">
+                <h3>Send us a Message</h3>
+              </div>
+
+              <form action="" method="post">
+                {% csrf_token %}
+                <div class="row">
+
+                  <div class="col-md-6 form-group">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  </div>
+
+                  <div class="col-md-6 form-group mt-3 mt-md-0">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  </div>
+
+                </div>
+
+                <div class="form-group mt-3">
+                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                </div>
+
+                <div class="form-group mt-3">
+                  <textarea class="form-control" name="message" rows="3" placeholder="Message" required></textarea>
+                </div>
+                
+                <div class="text-center"><button class="btn btn-success" type="submit">Send Message</button></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    {% endblock %}
+      
+  </body>
+</html>
